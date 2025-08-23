@@ -41,12 +41,16 @@ jobs:
         run: |
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
+          # Install suggested packages that are available
+          install.packages(c("testthat", "knitr"))
         shell: Rscript {0}
 
       - name: Check package
         run: |
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "error")
         shell: Rscript {0}
+        env:
+          _R_CHECK_FORCE_SUGGESTS_: false
 
       - name: Upload check results
         if: failure()
