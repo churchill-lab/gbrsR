@@ -983,7 +983,7 @@ configure_plot <- function(...) {
     for (param in intersect(names(updates), valid_params)) {
         old_value <- config[[param]]
         config[[param]] <- updates[[param]]
-        message('Updated ', param, ': ', old_value, ' → ', updates[[param]])
+        message('Updated ', param, ': ', old_value, ' -> ', updates[[param]])
     }
 
     return(config)
@@ -1085,7 +1085,7 @@ save_genome_plot <- function(plot,
 
     message('Plot saved successfully:')
     message('  - File: ', filename)
-    message('  - Dimensions: ', width, ' × ', height, ' inches')
+    message('  - Dimensions: ', width, ' x ', height, ' inches')
     message('  - Format: ', format)
     message('  - Resolution: ', dpi, ' DPI')
 }
