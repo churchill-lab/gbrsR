@@ -2,3 +2,7 @@
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^INSTALL\.md$
+^original\.py$
+^SETUP_GITHUB\.md$

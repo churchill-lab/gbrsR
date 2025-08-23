@@ -595,11 +595,10 @@ process_genotype_data <- function(df, founders = DEFAULT_FOUNDERS, config = DEFA
 #'
 #' @export
 count_recombinations <- function(df) {
-
     recomb_counts <- df %>%
-        dplyr::group_by(chromosome) %>%
+        dplyr::group_by(.data$chromosome) %>%
         dplyr::summarize(
-            num_recomb = sum(dplyr::lag(max_diplotype, default = dplyr::first(max_diplotype)) != max_diplotype),
+            num_recomb = sum(dplyr::lag(.data$max_diplotype, default = dplyr::first(.data$max_diplotype)) != .data$max_diplotype),
             .groups = 'drop'
         )
 
@@ -650,14 +649,13 @@ count_recombinations <- function(df) {
 #'
 #' @export
 prepare_plot_data <- function(df, config = DEFAULT_CONFIG) {
-
     # Create long format for plotting
     df_long <- df %>%
         tidyr::pivot_longer(cols = c('founder1', 'founder2'), names_to = 'hap', values_to = 'founder') %>%
         dplyr::mutate(
-            y = ifelse(hap == 'founder1', y_base, y_base + config$bar_height + config$founder_gap),
-            yend = y + config$bar_height,
-            cM = marker_index * (config$max_cM / max(df$marker_index))
+            y = ifelse(.data$hap == 'founder1', .data$y_base, .data$y_base + config$bar_height + config$founder_gap),
+            yend = .data$y + config$bar_height,
+            cM = .data$marker_index * (config$max_cM / max(df$marker_index))
         )
 
     message('Data transformed to long format for plotting')
@@ -709,16 +707,16 @@ create_genome_plot <- function(df_long,
                                sample_name = 'Sample') {
     # get chromosome positions
     chr_ypos <- df_long %>%
-        dplyr::group_by(chromosome) %>%
-        dplyr::summarize(y_base = dplyr::first(y_base), .groups = 'drop') %>%
-        dplyr::pull(y_base, name = chromosome)
+        dplyr::group_by(.data$chromosome) %>%
+        dplyr::summarize(y_base = dplyr::first(.data$y_base), .groups = 'drop') %>%
+        dplyr::pull(.data$y_base, name = .data$chromosome)
 
     # create plot
-    p <- ggplot(df_long, aes(x = cM, y = y, fill = founder)) +
+    p <- ggplot(df_long, aes(x = .data$cM, y = .data$y, fill = .data$founder)) +
         geom_tile(
             aes(
                 height = config$bar_height,
-                width = (config$max_cM / max(marker_index)) * config$tile_width_factor
+                width = (config$max_cM / max(.data$marker_index)) * config$tile_width_factor
             ),
             show.legend = FALSE,
             color = NA, # remove tile borders for cleaner look
@@ -793,7 +791,7 @@ create_genome_plot <- function(df_long,
         nrec <- recomb_counts$num_recomb[recomb_counts$chromosome == chr]
 
         # find the max cM for this chromosome
-        chr_data <- df_long %>% filter(chromosome == chr, hap == 'founder2')
+        chr_data <- df_long %>% dplyr::filter(.data$chromosome == chr, .data$hap == 'founder2')
         xmax <- max(chr_data$cM, na.rm = TRUE)
 
         p <- p + annotate(
