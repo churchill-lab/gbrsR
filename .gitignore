@@ -1,0 +1,76 @@
+# R package specific
+*.Rcheck/
+*.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# R package build artifacts
+*.tar.gz
+*.tgz
+*.zip
+*.pdf
+*.png
+*.svg
+*.tiff
+
+# renv - local environment (don't push)
+renv/
+renv.lock
+.Rprofile
+
+# R package documentation
+man/
+docs/
+vignettes/*.html
+vignettes/*.Rmd
+
+# R package tests
+tests/testthat/_snaps/
+tests/testthat/testthat.Rout
+
+# R package vignettes
+vignettes/*.R
+vignettes/*.Rmd
+vignettes/*.html
+
+# R package examples
+example/*.npz
+example/*.pdf
+example/*.png
+
+# R package development
+.Rprofile
+.Renviron
+.RData
+.Rhistory
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.out
+
+# Python specific (for reticulate)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
