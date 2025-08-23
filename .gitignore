@@ -20,7 +20,6 @@ renv.lock
 .Rprofile
 
 # R package documentation
-man/
 docs/
 vignettes/*.html
 vignettes/*.Rmd
@@ -30,8 +29,6 @@ tests/testthat/_snaps/
 tests/testthat/testthat.Rout
 
 # R package vignettes
-vignettes/*.R
-vignettes/*.Rmd
 vignettes/*.html
 
 # R package examples
