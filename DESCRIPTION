@@ -1,11 +1,11 @@
 Package: gbrsR
 Type: Package
-Title: Genome-Based Reconstruction of Strains Visualization
+Title: GBRS utilities for R
 Version: 1.0.0
 Date: 2024-12-19
 Author: Matthew Vincent [aut, cre]
 Maintainer: Matthew Vincent <mvincent@jax.org>
-Description: A comprehensive R package for visualizing genome reconstructions from GBRS (Genome-Based Reconstruction of Strains) data. Supports NPZ files containing genotypic probability matrices and generates publication-ready genome plots with configurable parameters.
+Description: An R package for GBRS utilities
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -19,10 +19,11 @@ Imports:
     stringr (>= 1.5.0),
     reticulate (>= 1.28.0),
     readr (>= 2.1.0),
-    magrittr (>= 2.0.0),
-    svglite (>= 2.0.0)
+    magrittr (>= 2.0.0)
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    extrafont,
+    systemfonts
 VignetteBuilder: knitr
