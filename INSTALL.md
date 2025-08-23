@@ -1,5 +1,13 @@
 # Installing gbrsR
 
+⚠️ **CRITICAL DEPENDENCY WARNING** ⚠️
+
+**This package REQUIRES Python and the `reticulate` R package to function!**
+
+**Without these, you will get errors and the package will not work.**
+
+**See the detailed requirements below.**
+
 ## From GitHub
 
 ### Option 1: Using devtools (Recommended)
@@ -43,13 +51,23 @@ library(gbrsR)
 
 ## Dependencies
 
+### R Packages (Required)
 The package requires these R packages:
 - ggplot2
 - dplyr  
 - tidyr
 - stringr
-- reticulate
+- **reticulate** ⚠️ **CRITICAL**
 - readr
 - magrittr
 
-These will be installed automatically when you install gbrsR.
+**Note**: These R packages will be installed automatically when you install gbrsR.
+
+### Python Requirements (MANDATORY)
+🚨 **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
+
+You **MUST** have:
+- **Python 3.6+** installed and accessible from R
+- **NumPy package** (`pip install numpy` or `conda install numpy`)
+
+**If you get errors about `reticulate` or Python, install these first!**

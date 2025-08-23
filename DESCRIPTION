@@ -5,7 +5,7 @@ Version: 1.0.0
 Date: 2024-12-19
 Author: Matthew Vincent [aut, cre]
 Maintainer: Matthew Vincent <mvincent@jax.org>
-Description: An R package for GBRS utilities
+Description: An R package for GBRS utilities. IMPORTANT: This package REQUIRES Python and the reticulate R package to function. See README for installation instructions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

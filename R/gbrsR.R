@@ -32,6 +32,14 @@
 #' Provides tools for loading NPZ genotype probability files, processing
 #' recombination data, and creating publication-ready genome plots.
 #' 
+#' @section CRITICAL DEPENDENCY WARNING:
+#' This package REQUIRES Python and the reticulate R package to function!
+#' Without these dependencies, you will get errors like:
+#' - "Error: Please install reticulate"
+#' - "FileNotFoundError: No such file or directory"
+#' 
+#' See the README for complete installation instructions.
+#' 
 #' @details
 #' The package includes functions for:
 #' \itemize{
@@ -266,6 +274,10 @@ generate_diplotypes <- function(founders = DEFAULT_FOUNDERS) {
 #' Attempts to load NPZ files using different methods with intelligent
 #' fallback strategies. First tries reticulate (Python/numpy), then
 #' alternative methods if available.
+#' 
+#' @section CRITICAL DEPENDENCY:
+#' This function REQUIRES the reticulate R package and Python with NumPy installed.
+#' Without these, the function will fail with an error.
 #'
 #' @param npz_file Path to the NPZ file to load
 #'
@@ -284,6 +296,9 @@ generate_diplotypes <- function(founders = DEFAULT_FOUNDERS) {
 #'
 #' @export
 smart_npz_loader <- function(npz_file) {
+    # Expand file path to handle tilde and relative paths
+    npz_file <- normalizePath(npz_file, mustWork = FALSE)
+    
     if (!file.exists(npz_file)) {
         stop('NPZ file does not exist: ', npz_file)
     }
@@ -311,10 +326,11 @@ smart_npz_loader <- function(npz_file) {
             ))
         }, error = function(e) {
             message('Reticulate failed: ', e$message)
+            message('Run `reticulate::py_last_error()` for details.')
         })
     }
     
-    stop('Please install reticulate')
+    stop('Failed to load NPZ file. Please ensure reticulate is installed and Python/numpy are available.')
 }
 
 #' Load and process NPZ file
@@ -812,6 +828,14 @@ create_genome_plot <- function(df_long,
 #' This is the main function for creating genome reconstruction plots from NPZ files.
 #' It orchestrates the entire workflow from data loading to final plot generation,
 #' providing a simple interface for users while maintaining flexibility.
+#' 
+#' @section CRITICAL DEPENDENCY WARNING:
+#' This function REQUIRES the reticulate R package and Python with NumPy installed.
+#' Without these dependencies, the function will fail with errors like:
+#' - "Error: Please install reticulate"
+#' - "FileNotFoundError: No such file or directory"
+#' 
+#' See the README for complete installation instructions.
 #'
 #' @param npz_file Path to NPZ file containing genotypic probability data
 #' @param founders Character vector of founder strain names (default: DEFAULT_FOUNDERS)

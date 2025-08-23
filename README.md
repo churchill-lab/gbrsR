@@ -6,6 +6,20 @@
 
 A comprehensive R package for visualizing genome reconstructions from GBRS (Genome-Based Reconstruction of Strains) data. Supports NPZ files containing genotypic probability matrices and generates publication-ready genome plots with configurable parameters.
 
+---
+
+🚨 **CRITICAL DEPENDENCY WARNING** 🚨
+
+**This package REQUIRES Python and the `reticulate` R package to function!**
+
+**Without these, you will get errors like:**
+- `Error: Please install reticulate`
+- `FileNotFoundError: No such file or directory`
+
+**See the [Installation](#installation) section below for setup instructions.**
+
+---
+
 ## Features
 
 - **NPZ File Support**: Load and process NPZ files containing genotypic probability data
@@ -17,6 +31,18 @@ A comprehensive R package for visualizing genome reconstructions from GBRS (Geno
 - **Compact Mode**: Pre-configured settings for space-constrained layouts
 
 ## Installation
+
+⚠️ **CRITICAL REQUIREMENT**: This package **REQUIRES** `reticulate` and Python to function!
+
+### Prerequisites (MANDATORY)
+
+```r
+# Install required packages (reticulate is ESSENTIAL)
+install.packages(c("ggplot2", "dplyr", "tidyr", "stringr", "reticulate", "readr", "magrittr"))
+
+# Install suggested packages (optional but recommended)
+install.packages(c("testthat", "knitr", "rmarkdown"))
+```
 
 ### From GitHub (Recommended)
 
@@ -36,6 +62,53 @@ if (!require(remotes)) install.packages("remotes")
 
 # Install from GitHub
 remotes::install_github("churchill-lab/gbrsR")
+```
+
+### Python Requirements (MANDATORY)
+
+🚨 **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
+
+This package uses `reticulate` to interface with Python. You **MUST** have:
+- **Python 3.6+** installed and accessible from R
+- **NumPy package** (`pip install numpy` or `conda install numpy`)
+- **The `reticulate` R package** (installed above)
+
+**If you get errors about `reticulate` or Python, install these first!**
+
+## Troubleshooting
+
+### Common Error: "Please install reticulate"
+
+If you see this error:
+```
+Error in smart_npz_loader(npz_file) : Please install reticulate
+```
+
+**SOLUTION**: Install the required packages first:
+```r
+# Install reticulate and other dependencies
+install.packages(c("reticulate", "ggplot2", "dplyr", "tidyr", "stringr", "readr", "magrittr"))
+
+# Then reinstall gbrsR
+devtools::install_github("churchill-lab/gbrsR")
+```
+
+### Common Error: "FileNotFoundError" or "No such file or directory"
+
+If you see Python errors about missing files:
+```
+FileNotFoundError: [Errno 2] No such file or directory
+```
+
+**SOLUTION**: Ensure Python and NumPy are installed:
+```bash
+# Check Python version
+python3 --version
+
+# Install NumPy
+pip3 install numpy
+# OR if using conda
+conda install numpy
 ```
 
 ## Quick Start
@@ -121,7 +194,7 @@ The package provides extensive customization through the `configure_plot()` func
 ## Dependencies
 
 - **Required**: ggplot2, dplyr, tidyr, stringr, reticulate, readr, magrittr
-- **Suggested**: testthat, knitr, rmarkdown, svglite
+- **Suggested**: testthat, knitr, rmarkdown, extrafont, systemfonts
 
 ## Contributing
 
@@ -131,27 +204,3 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Citation
-
-If you use gbrsR in your research, please cite:
-
-```
-@software{gbrsR,
-  title = {gbrsR: Genome-Based Reconstruction of Strains Visualization},
-  author = {Matthew Vincent},
-  year = {2024},
-  url = {https://github.com/churchill-lab/gbrsR}
-}
-```
-
-## Support
-
-- **Issues**: [GitHub Issues](https://github.com/churchill-lab/gbrsR/issues)
-- **Documentation**: [Package Documentation](https://churchill-lab.github.io/gbrsR/)
-- **Email**: mvincent@jax.org
-
-## Acknowledgments
-
-- Diversity Outbred (DO) and Collaborative Cross (CC) mouse research community
-- R and tidyverse development teams
-- Python/numpy community for NPZ file format support
