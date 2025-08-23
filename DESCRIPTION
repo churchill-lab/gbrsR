@@ -1,6 +1,6 @@
 Package: gbrsR
 Type: Package
-Title: GBRS utilities for R
+Title: GBRS Utilities for R
 Version: 1.0.0
 Date: 2024-12-19
 Author: Matthew Vincent [aut, cre]
@@ -23,7 +23,6 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown,
     extrafont,
     systemfonts
 VignetteBuilder: knitr

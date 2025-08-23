@@ -23,6 +23,7 @@
 #' @import reticulate
 #' @import readr
 #' @importFrom magrittr %>%
+#' @importFrom stats setNames
 #'
 #' @name "_PACKAGE"
 #' @title gbrsR: Genome Browser for Recombination Studies
@@ -469,10 +470,10 @@ process_genotype_data <- function(df, founders = DEFAULT_FOUNDERS, config = DEFA
 
     # for each marker, find the diplotype with the highest probability
     df <- df %>%
-        mutate(
-            max_diplotype = diplotype_cols[apply(select(., all_of(diplotype_cols)), 1, which.max)],
-            founder2 = substr(max_diplotype, 1, 1), # first founder in diplotype
-            founder1 = substr(max_diplotype, 2, 2)  # second founder in diplotype
+        dplyr::mutate(
+            max_diplotype = diplotype_cols[apply(dplyr::select(df, dplyr::all_of(diplotype_cols)), 1, which.max)],
+            founder2 = substr(.data$max_diplotype, 1, 1), # first founder in diplotype
+            founder1 = substr(.data$max_diplotype, 2, 2)  # second founder in diplotype
         )
 
     # order chromosomes for plotting (natural sort)
@@ -551,12 +552,12 @@ process_genotype_data <- function(df, founders = DEFAULT_FOUNDERS, config = DEFA
         stop('Critical error: Cannot create valid chromosome positions. chr_ypos length: ', length(chr_ypos), ', chrom_order length: ', length(chrom_order))
     }
 
-    df <- df %>% dplyr::mutate(y_base = chr_ypos[as.character(chromosome)])
+    df <- df %>% dplyr::mutate(y_base = chr_ypos[as.character(.data$chromosome)])
 
     # calculate cM positions
     df <- df %>%
-        dplyr::group_by(chromosome) %>%
-        dplyr::mutate(cM = marker_index * config$grid_width) %>%
+        dplyr::group_by(.data$chromosome) %>%
+        dplyr::mutate(cM = .data$marker_index * config$grid_width) %>%
         dplyr::ungroup()
 
     message('Genotypic data processing completed')
