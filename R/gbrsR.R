@@ -22,10 +22,29 @@
 #' @import stringr
 #' @import reticulate
 #' @import readr
-#' @import magrittr
+#' @importFrom magrittr %>%
 #'
-#' @docType package
-#' @name gbrsR
+#' @name "_PACKAGE"
+#' @title gbrsR: Genome Browser for Recombination Studies
+#' @description
+#' A comprehensive R package for analyzing and visualizing genetic recombination
+#' data from Diversity Outbred (DO) and Collaborative Cross (CC) mouse studies.
+#' Provides tools for loading NPZ genotype probability files, processing
+#' recombination data, and creating publication-ready genome plots.
+#' 
+#' @details
+#' The package includes functions for:
+#' \itemize{
+#'   \item Loading and processing NPZ genotype probability files
+#'   \item Analyzing recombination patterns across chromosomes
+#'   \item Creating customizable genome plots with founder strain information
+#'   \item Generating compact and publication-ready visualizations
+#' }
+#' 
+#' @seealso
+#' \code{\link{plot_gbrs_genome}} for the main plotting function
+#' \code{\link{smart_npz_loader}} for loading NPZ files
+#' \code{\link{configure_plot}} for customizing plot appearance
 NULL
 
 #' Default configuration for genome plots

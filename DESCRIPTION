@@ -3,12 +3,13 @@ Type: Package
 Title: Genome-Based Reconstruction of Strains Visualization
 Version: 1.0.0
 Date: 2024-12-19
-Authors@R: person("Matthew", "Vincent", email = "mvincent@jax.org", role = c("aut", "cre"))
+Author: Matthew Vincent [aut, cre]
+Maintainer: Matthew Vincent <mvincent@jax.org>
 Description: A comprehensive R package for visualizing genome reconstructions from GBRS (Genome-Based Reconstruction of Strains) data. Supports NPZ files containing genotypic probability matrices and generates publication-ready genome plots with configurable parameters.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Depends: 
     R (>= 4.0.0)
 Imports: 
