@@ -21,18 +21,18 @@
 #' @section CRITICAL DEPENDENCY WARNING:
 #' This function REQUIRES Python and the reticulate R package to function!
 #' Without these dependencies, you will get errors like:
-#' - "Error: Please install reticulate"
-#' - "FileNotFoundError: No such file or directory"
+#' - 'Error: Please install reticulate'
+#' - 'FileNotFoundError: No such file or directory'
 #'
 #' See the README for complete installation instructions.
 #'
 #' @examples
 #' \dontrun{
 #' # Load a standard NPZ file via reticulate
-#' data <- load_npz_file_reticulate("example.npz")
+#' data <- load_npz_file_reticulate('example.npz')
 #'
 #' # Load with custom founders
-#' data <- load_npz_file_reticulate("example.npz", founders = c("A", "B", "C"))
+#' data <- load_npz_file_reticulate('example.npz', founders = c('A', 'B', 'C'))
 #' }
 load_npz_file_reticulate <- function(npz_file,
                                     founders = DEFAULT_FOUNDERS) {
@@ -40,24 +40,24 @@ load_npz_file_reticulate <- function(npz_file,
     diplotypes <- generate_diplotypes(founders)
 
     # load data
-    message("Loading NPZ file: ", basename(npz_file), "...")
+    message('Loading NPZ file: ', basename(npz_file), '...')
 
     # Expand file path to handle tilde and relative paths
     npz_file <- normalizePath(npz_file, mustWork = FALSE)
 
     if (!file.exists(npz_file)) {
         stop(
-            "NPZ file not found: ", npz_file, "\n",
-            "Please check the file path and ensure the file exists."
+            'NPZ file not found: ', npz_file, '\n',
+            'Please check the file path and ensure the file exists.'
         )
     }
 
     # Try to load NPZ file using reticulate (Python/numpy)
-    if (requireNamespace("reticulate", quietly = TRUE)) {
+    if (requireNamespace('reticulate', quietly = TRUE)) {
         tryCatch(
             {
-                message("Attempting to load with reticulate (Python/numpy)...")
-                np <- reticulate::import("numpy")
+                message('Attempting to load with reticulate (Python/numpy)...')
+                np <- reticulate::import('numpy')
                 npz <- np$load(npz_file, allow_pickle = TRUE)
                 chrom_names <- as.character(npz$files)
 
@@ -67,41 +67,41 @@ load_npz_file_reticulate <- function(npz_file,
                     data_list[[chrom]] <- npz$f[[chrom]]
                 }
 
-                message("Successfully loaded with reticulate")
+                message('Successfully loaded with reticulate')
                 loaded_data <- list(
                     data = data_list,
                     chrom_names = chrom_names,
-                    method = "reticulate",
+                    method = 'reticulate',
                     success = TRUE
                 )
             },
             error = function(e) {
-                message("Reticulate failed: ", e$message)
-                message("Run `reticulate::py_last_error()` for details.")
+                message('Reticulate failed: ', e$message)
+                message('Run `reticulate::py_last_error()` for details.')
                 stop(
-                    "Failed to load NPZ file with reticulate. Please check:\n",
-                    "1. File format is valid NPZ\n",
-                    "2. File is not corrupted\n",
-                    "3. Python dependencies are properly installed"
+                    'Failed to load NPZ file with reticulate. Please check:\n',
+                    '1. File format is valid NPZ\n',
+                    '2. File is not corrupted\n',
+                    '3. Python dependencies are properly installed'
                 )
             }
         )
     } else {
         stop(
-            "Failed to load NPZ file. Please ensure:\n",
+            'Failed to load NPZ file. Please ensure:\n',
             '1. reticulate R package is installed: install.packages("reticulate")\n',
-            "2. Python is installed and accessible\n",
-            "3. NumPy is installed: pip install numpy\n",
-            "See README for complete installation instructions."
+            '2. Python is installed and accessible\n',
+            '3. NumPy is installed: pip install numpy\n',
+            'See README for complete installation instructions.'
         )
     }
 
     chrom_names <- loaded_data$chrom_names
     data_list <- loaded_data$data
 
-    message("NPZ file loaded successfully using ", loaded_data$method, ": ", basename(npz_file))
-    message("  - Found chromosomes: ", paste(chrom_names, collapse = ", "))
-    message("  - Generated diplotypes: ", paste(diplotypes, collapse = ", "))
+    message('NPZ file loaded successfully using ', loaded_data$method, ': ', basename(npz_file))
+    message('  - Found chromosomes: ', paste(chrom_names, collapse = ', '))
+    message('  - Generated diplotypes: ', paste(diplotypes, collapse = ', '))
 
     # process each chromosome
     all_df <- list()
@@ -121,7 +121,7 @@ load_npz_file_reticulate <- function(npz_file,
     # combine all chromosomes
     df <- dplyr::bind_rows(all_df)
 
-    message("Total markers loaded: ", nrow(df))
+    message('Total markers loaded: ', nrow(df))
     return(df)
 }
 
@@ -154,49 +154,59 @@ load_npz_file_reticulate <- function(npz_file,
 #' @examples
 #' \dontrun{
 #' # Load a standard NPZ file via RcppCNPy
-#' data <- load_npz_file_rcpp_cnpy("example.npz")
+#' data <- load_npz_file_rcpp_cnpy('example.npz')
 #'
 #' # Load with custom founders
-#' data <- load_npz_file_rcpp_cnpy("example.npz", founders = c("A", "B", "C"))
+#' data <- load_npz_file_rcpp_cnpy('example.npz', founders = c('A', 'B', 'C'))
 #' }
 load_npz_file_rcpp_cnpy <- function(npz_file,
                                     founders = DEFAULT_FOUNDERS,
                                     cleanup = TRUE) {
 
-    if (!requireNamespace("RcppCNPy", quietly = TRUE)) {
-        stop("Please install RcppCNPy: install.packages('RcppCNPy')")
+    if (!requireNamespace('RcppCNPy', quietly = TRUE)) {
+        stop('Please install RcppCNPy: install.packages("RcppCNPy")')
     }
+
+    # load data
+    message('Loading NPZ file: ', basename(npz_file), '...')
 
     npz_file <- normalizePath(npz_file, mustWork = FALSE)
     if (!file.exists(npz_file)) {
-        stop("NPZ file not found: ", npz_file)
+        stop('NPZ file not found: ', npz_file)
     }
 
     diplotypes <- gbrsR::generate_diplotypes(founders)
 
     # Extract .npz (zip) contents to a temporary directory
-    exdir <- file.path(tempdir(), paste0("rcppcnpy_", tools::file_path_sans_ext(basename(npz_file)), "_", as.integer(Sys.time())))
+    exdir <- file.path(tempdir(), paste0('rcppcnpy_', tools::file_path_sans_ext(basename(npz_file)), '_', as.integer(Sys.time())))
+
     dir.create(exdir, recursive = TRUE, showWarnings = FALSE)
-    unzip(npz_file, exdir = exdir)
+    message('Attempting to load with RcppCNPy...')
+    utils::unzip(npz_file, exdir = exdir)
 
     # Collect all .npy files (keys inside the npz)
-    npy_files <- list.files(exdir, pattern = "\\.npy$", full.names = TRUE, recursive = TRUE)
+    npy_files <- list.files(exdir, pattern = '\\.npy$', full.names = TRUE, recursive = TRUE)
     if (length(npy_files) == 0) {
         if (cleanup && dir.exists(exdir)) unlink(exdir, recursive = TRUE, force = TRUE)
-        stop("No .npy entries found after unzipping NPZ: ", npz_file)
+        stop('No .npy entries found after unzipping NPZ: ', npz_file)
     }
+    message('Successfully loaded with RcppCNPy')
 
     # Map chromosome name from file basename (strip .npy)
-    chrom_names <- sub("\\.npy$", "", basename(npy_files))
+    chrom_names <- sub('\\.npy$', '', basename(npy_files))
+
+    message('NPZ file loaded successfully using RcppCNPy: ', basename(npz_file))
+    message('  - Found chromosomes: ', paste(chrom_names, collapse = ', '))
+    message('  - Generated diplotypes: ', paste(diplotypes, collapse = ', '))
 
     # Load each .npy and build per-chromosome data frames identical to gbrsR::load_npz_file
-    all_df <- vector("list", length(npy_files))
+    all_df <- vector('list', length(npy_files))
     names(all_df) <- chrom_names
 
     for (i in seq_along(npy_files)) {
         chrom <- chrom_names[i]
         # Use dotranspose=FALSE to match numpy orientation (validated against reticulate)
-        mat <- RcppCNPy::npyLoad(npy_files[i], type = "numeric", dotranspose = FALSE)
+        mat <- RcppCNPy::npyLoad(npy_files[i], type = 'numeric', dotranspose = FALSE)
 
         if (!is.matrix(mat)) {
             mat <- as.matrix(mat)
@@ -217,6 +227,7 @@ load_npz_file_rcpp_cnpy <- function(npz_file,
     # Optional cleanup of extracted directory
     if (cleanup && dir.exists(exdir)) unlink(exdir, recursive = TRUE, force = TRUE)
 
+    message('Total markers loaded: ', nrow(df))
     return(df)
 }
 
@@ -230,6 +241,7 @@ load_npz_file_rcpp_cnpy <- function(npz_file,
 #'
 #' @param npz_file Path to the NPZ file to load
 #' @param founders Character vector of founder strain names (default: DEFAULT_FOUNDERS)
+#' @param cleanup Logical; remove temporary extracted files (default: TRUE)
 #'
 #' @return Data frame with diplotype probability columns and metadata columns
 #'         \code{chromosome} and \code{marker_index}.
@@ -245,21 +257,21 @@ load_npz_file_rcpp_cnpy <- function(npz_file,
 #' @examples
 #' \dontrun{
 #' # Load a standard NPZ file (uses reticulate if available, else RcppCNPy)
-#' data <- load_npz_file("example.npz")
+#' data <- load_npz_file('example.npz')
 #'
 #' # Load with custom founders
-#' data <- load_npz_file("example.npz", founders = c("A", "B", "C"))
+#' data <- load_npz_file('example.npz', founders = c('A', 'B', 'C'))
 #' }
 #'
 #' @export
 load_npz_file <- function(npz_file,
                           founders = DEFAULT_FOUNDERS,
                           cleanup = TRUE) {
-    if (requireNamespace("reticulate", quietly = TRUE)) {
+    if (requireNamespace('reticulate', quietly = TRUE)) {
         return(load_npz_file_reticulate(npz_file, founders))
-    } else if (requireNamespace("RcppCNPy", quietly = TRUE)) {
+    } else if (requireNamespace('RcppCNPy', quietly = TRUE)) {
         return(load_npz_file_rcpp_cnpy(npz_file, founders, cleanup))
     } else {
-        stop("Please install reticulate or RcppCNPy to load NPZ files")
+        stop('Please install reticulate or RcppCNPy to load NPZ files')
     }
 }

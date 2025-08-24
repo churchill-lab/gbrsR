@@ -20,7 +20,7 @@ renv.lock
 .Rprofile
 
 # R package documentation
-man/
+#man/
 docs/
 vignettes/*.html
 vignettes/*.Rmd

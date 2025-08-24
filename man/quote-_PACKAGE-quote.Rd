@@ -2,7 +2,7 @@
 % Please edit documentation in R/gbrsR.R
 \name{"_PACKAGE"}
 \alias{"_PACKAGE"}
-\title{gbrsR: Genome Browser for Recombination Studies}
+\title{gbrsR: GBRS for R}
 \description{
 A comprehensive R package for visualizing genome reconstructions from GBRS
 (Genome-Based Reconstruction of Strains) data. Supports NPZ files containing

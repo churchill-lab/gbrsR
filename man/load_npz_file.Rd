@@ -10,6 +10,8 @@ load_npz_file(npz_file, founders = DEFAULT_FOUNDERS, cleanup = TRUE)
 \item{npz_file}{Path to the NPZ file to load}
 
 \item{founders}{Character vector of founder strain names (default: DEFAULT_FOUNDERS)}
+
+\item{cleanup}{Logical; remove temporary extracted files (default: TRUE)}
 }
 \value{
 Data frame with diplotype probability columns and metadata columns
@@ -32,10 +34,10 @@ Behavior:
 \examples{
 \dontrun{
 # Load a standard NPZ file (uses reticulate if available, else RcppCNPy)
-data <- load_npz_file("example.npz")
+data <- load_npz_file('example.npz')
 
 # Load with custom founders
-data <- load_npz_file("example.npz", founders = c("A", "B", "C"))
+data <- load_npz_file('example.npz', founders = c('A', 'B', 'C'))
 }
 
 }

@@ -156,13 +156,13 @@ process_genotype_data <- function(df,
     start_pos <- max(num_chrs * final_spacing, num_chrs * 0.5)
     spacing_step <- max(final_spacing, 0.5)
 
-    chr_ypos <- setNames(seq(start_pos, spacing_step, by = -spacing_step), chrom_order)
+    chr_ypos <- stats::setNames(seq(start_pos, spacing_step, by = -spacing_step), chrom_order)
 
     # ensure we have exactly the right number of positions
     if (length(chr_ypos) != length(chrom_order)) {
         # Fallback: create positions manually
         message('Creating fallback chromosome positions')
-        chr_ypos <- setNames(seq(num_chrs, 1), chrom_order)
+        chr_ypos <- stats::setNames(seq(num_chrs, 1), chrom_order)
     }
 
     # Final validation

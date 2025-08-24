@@ -22,10 +22,9 @@
 #' @import stringr
 #' @import readr
 #' @importFrom magrittr %>%
-#' @importFrom stats setNames
 #'
 #' @name "_PACKAGE"
-#' @title gbrsR: Genome Browser for Recombination Studies
+#' @title gbrsR: GBRS for R
 #' @description
 #' A comprehensive R package for analyzing and visualizing genetic recombination
 #' data from Diversity Outbred (DO) and Collaborative Cross (CC) mouse studies.
