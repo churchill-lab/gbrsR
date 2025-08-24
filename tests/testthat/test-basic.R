@@ -31,9 +31,8 @@ test_that("configure_plot works", {
   expect_equal(config$founder_gap, DEFAULT_CONFIG$founder_gap)  # unchanged
 })
 
-test_that("create_compact_config works", {
-  config <- create_compact_config()
-  expect_true(config$compact_mode)
-  expect_equal(config$bar_height, 0.15)
-  expect_equal(config$founder_gap, 0.05)
+test_that("COMPACT_CONFIG works", {
+  expect_true(COMPACT_CONFIG$compact_mode)
+  expect_equal(COMPACT_CONFIG$bar_height, 0.15)
+  expect_equal(COMPACT_CONFIG$founder_gap, 0.05)
 })

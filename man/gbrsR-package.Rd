@@ -4,9 +4,9 @@
 \docType{package}
 \title{Genome-Based Reconstruction of Strains Visualization}
 \description{
-A comprehensive R package for visualizing genome reconstructions from GBRS 
-(Genome-Based Reconstruction of Strains) data. Supports NPZ files containing 
-genotypic probability matrices and generates publication-ready genome plots 
+A comprehensive R package for visualizing genome reconstructions from GBRS
+(Genome-Based Reconstruction of Strains) data. Supports NPZ files containing
+genotypic probability matrices and generates publication-ready genome plots
 with configurable parameters.
 }
 \details{

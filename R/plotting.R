@@ -84,7 +84,10 @@ create_genome_plot <- function(df,
         coord_cartesian(ylim = c(0, max(chr_ypos) + config$bar_height + config$founder_gap + config$bar_height + 0.5)) +
         # labels
         labs(
-            title = paste0('Genome Reconstruction: ', sample_name, '\n(Total ', sum(recomb_counts$num_recomb), ' Recombinations)'),
+            title = paste0(
+                'Genome Reconstruction: ', sample_name,
+                '\n(Total ', sum(recomb_counts$num_recomb), ' Recombinations)'
+            ),
             x = 'Genetic Distance (cM)',
             y = 'Chromosome',
             fill = 'Founder Strain'
