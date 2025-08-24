@@ -36,7 +36,7 @@ generate_diplotypes <- function(founders = DEFAULT_FOUNDERS) {
 #' @param chrom_lengths Named vector of chromosome lengths (default: DEFAULT_CHROM_LENGTHS)
 #'
 #' @return Processed data frame with founder assignments including:
-#' \itemize{
+#' \describe{
 #'   \item{max_diplotype}{Most likely diplotype at each position}
 #'   \item{founder1}{Second founder in the diplotype}
 #'   \item{founder2}{First founder in the diplotype}
@@ -202,7 +202,7 @@ process_genotype_data <- function(df,
 #' @param df Processed data frame from process_genotype_data()
 #'
 #' @return Data frame with recombination counts containing:
-#' \itemize{
+#' \describe{
 #'   \item{chromosome}{Chromosome identifier}
 #'   \item{num_recomb}{Number of recombination events detected}
 #' }
@@ -261,7 +261,7 @@ count_recombinations <- function(df) {
 #' @param config Configuration list (default: DEFAULT_CONFIG)
 #'
 #' @return Long-format data frame for plotting containing:
-#' \itemize{
+#' \describe{
 #'   \item{chromosome}{Chromosome identifier}
 #'   \item{marker_index}{Marker position index}
 #'   \item{max_diplotype}{Most likely diplotype}

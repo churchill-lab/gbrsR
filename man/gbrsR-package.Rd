@@ -31,7 +31,7 @@ The main workflow functions are:
 Configuration and customization:
 \itemize{
   \item \code{\link{configure_plot}}: Customize plot parameters
-  \item \code{\link{create_compact_config}}: Pre-configured compact layout
+  \item \code{\link{COMPACT_CONFIG}}: Pre-configured compact layout
   \item \code{\link{DEFAULT_CONFIG}}: Default configuration parameters
   \item \code{\link{DEFAULT_FOUNDER_COLORS}}: Standard founder color schemes
 }

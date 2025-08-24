@@ -13,7 +13,7 @@ prepare_plot_data(df, config = DEFAULT_CONFIG)
 }
 \value{
 Long-format data frame for plotting containing:
-\itemize{
+\describe{
   \item{chromosome}{Chromosome identifier}
   \item{marker_index}{Marker position index}
   \item{max_diplotype}{Most likely diplotype}

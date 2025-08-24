@@ -11,7 +11,7 @@ count_recombinations(df)
 }
 \value{
 Data frame with recombination counts containing:
-\itemize{
+\describe{
   \item{chromosome}{Chromosome identifier}
   \item{num_recomb}{Number of recombination events detected}
 }

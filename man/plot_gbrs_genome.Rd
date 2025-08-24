@@ -31,7 +31,7 @@ plot_gbrs_genome(
 }
 \value{
 Either a ggplot object (default) or a list containing:
-\itemize{
+\describe{
   \item{plot}{The generated genome plot}
   \item{data}{Processed genotype data}
   \item{data_long}{Long-format data for plotting}

@@ -187,7 +187,7 @@ create_genome_plot <- function(df,
 #' @param return_data Logical, whether to return processed data along with plot (default: FALSE)
 #'
 #' @return Either a ggplot object (default) or a list containing:
-#' \itemize{
+#' \describe{
 #'   \item{plot}{The generated genome plot}
 #'   \item{data}{Processed genotype data}
 #'   \item{data_long}{Long-format data for plotting}

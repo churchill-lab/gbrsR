@@ -22,7 +22,7 @@ process_genotype_data(
 }
 \value{
 Processed data frame with founder assignments including:
-\itemize{
+\describe{
   \item{max_diplotype}{Most likely diplotype at each position}
   \item{founder1}{Second founder in the diplotype}
   \item{founder2}{First founder in the diplotype}
