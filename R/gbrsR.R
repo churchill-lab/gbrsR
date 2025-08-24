@@ -20,7 +20,6 @@
 #' @import dplyr
 #' @import tidyr
 #' @import stringr
-#' @import reticulate
 #' @import readr
 #' @importFrom magrittr %>%
 #' @importFrom stats setNames

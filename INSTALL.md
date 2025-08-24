@@ -1,12 +1,13 @@
 # Installing gbrsR
 
-!!! **CRITICAL DEPENDENCY WARNING** !!!
+!!! **NPZ LOADING BACKENDS** !!!
 
-**This package REQUIRES Python and the `reticulate` R package to function!**
+To load NPZ files, install at least one backend at runtime:
 
-**Without these, you will get errors and the package will not work.**
+- reticulate (with Python + NumPy), or
+- RcppCNPy
 
-**See the detailed requirements below.**
+The package prefers reticulate if available; otherwise it falls back to RcppCNPy. If neither is installed, NPZ loading will error with guidance.
 
 ## From GitHub
 
@@ -51,23 +52,11 @@ library(gbrsR)
 
 ## Dependencies
 
-### R Packages (Required)
-The package requires these R packages:
-- ggplot2
-- dplyr  
-- tidyr
-- stringr
-- **reticulate** !!! **CRITICAL**
-- readr
-- magrittr
+### R Packages
+- Required: ggplot2, dplyr, tidyr, stringr, readr, magrittr
+- NPZ backends (install at least one): reticulate, RcppCNPy
+- Suggested: testthat, knitr, rmarkdown, extrafont, systemfonts
 
-**Note**: These R packages will be installed automatically when you install gbrsR.
-
-### Python Requirements (MANDATORY)
-!!! **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
-
-You **MUST** have:
-- **Python 3.6+** installed and accessible from R
-- **NumPy package** (`pip install numpy` or `conda install numpy`)
-
-**If you get errors about `reticulate` or Python, install these first!**
+### If using reticulate backend
+- Python 3.6+ installed and accessible from R
+- NumPy installed (`pip install numpy` or `conda install numpy`)

@@ -5,7 +5,7 @@ Version: 1.0.0
 Date: 2024-12-19
 Author: Matthew Vincent [aut, cre]
 Maintainer: Matthew Vincent <mvincent@jax.org>
-Description: An R package for GBRS utilities. IMPORTANT: This package REQUIRES Python and the reticulate R package to function. See README for installation instructions.
+Description: An R package for GBRS utilities. NPZ loading supports two optional backends: either 'reticulate' (with Python + NumPy) or 'RcppCNPy'. At runtime, one of these must be installed to load NPZ files. See README for installation instructions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -17,12 +17,13 @@ Imports:
     dplyr (>= 1.1.0),
     tidyr (>= 1.3.0),
     stringr (>= 1.5.0),
-    reticulate (>= 1.28.0),
     readr (>= 2.1.0),
     magrittr (>= 2.0.0)
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     extrafont,
+    reticulate (>= 1.28.0),
+    RcppCNPy,
     systemfonts
 VignetteBuilder: knitr

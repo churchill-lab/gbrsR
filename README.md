@@ -8,15 +8,14 @@ A comprehensive R package for visualizing genome reconstructions from GBRS (Geno
 
 ---
 
-!!! **CRITICAL DEPENDENCY WARNING** !!!
+!!! **NPZ LOADING BACKENDS** !!!
 
-**This package REQUIRES Python and the `reticulate` R package to function!**
+To load NPZ files, you need one of the following backends installed at runtime:
 
-**Without these, you will get errors like:**
-- `Error: Please install reticulate`
-- `FileNotFoundError: No such file or directory`
+- **reticulate** (with Python + NumPy)
+- **RcppCNPy**
 
-**See the [Installation](#installation) section below for setup instructions.**
+The package will prefer reticulate if available; otherwise it will fall back to RcppCNPy. If neither is installed, loading NPZ will error with guidance.
 
 ---
 
@@ -32,15 +31,17 @@ A comprehensive R package for visualizing genome reconstructions from GBRS (Geno
 
 ## Installation
 
-!!! **CRITICAL REQUIREMENT**: This package **REQUIRES** `reticulate` and Python to function!
-
-### Prerequisites (MANDATORY)
+### Prerequisites (R packages)
 
 ```r
-# Install required packages (reticulate is ESSENTIAL)
-install.packages(c("ggplot2", "dplyr", "tidyr", "stringr", "reticulate", "readr", "magrittr"))
+# Core R dependencies
+install.packages(c("ggplot2", "dplyr", "tidyr", "stringr", "readr", "magrittr"))
 
-# Install suggested packages (optional but recommended)
+# Optional NPZ backends (install at least one)
+install.packages("RcppCNPy")
+install.packages("reticulate")
+
+# Suggested (optional)
 install.packages(c("testthat", "knitr", "rmarkdown"))
 ```
 
@@ -64,33 +65,28 @@ if (!require(remotes)) install.packages("remotes")
 remotes::install_github("churchill-lab/gbrsR")
 ```
 
-### Python Requirements (MANDATORY)
+### If using reticulate backend
 
-!!! **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
+When using the reticulate backend, ensure:
+- Python 3.6+ installed and accessible from R
+- NumPy installed (`pip install numpy` or `conda install numpy`)
 
-This package uses `reticulate` to interface with Python. You **MUST** have:
-- **Python 3.6+** installed and accessible from R
-- **NumPy package** (`pip install numpy` or `conda install numpy`)
-- **The `reticulate` R package** (installed above)
-
-**If you get errors about `reticulate` or Python, install these first!**
+If Python/NumPy are missing, NPZ loading via reticulate will fail; the package will then try RcppCNPy if installed.
 
 ## Troubleshooting
 
-### Common Error: "Please install reticulate"
+### Common Error: Backend not installed
 
-If you see this error:
+If you see an error about missing backends when loading NPZ:
 ```
-Error in load_npz_file(npz_file) : Please install reticulate
+Please install reticulate or RcppCNPy to load NPZ files
 ```
 
-**SOLUTION**: Install the required packages first:
+Install at least one backend:
 ```r
-# Install reticulate and other dependencies
-install.packages(c("reticulate", "ggplot2", "dplyr", "tidyr", "stringr", "readr", "magrittr"))
-
-# Then reinstall gbrsR
-devtools::install_github("churchill-lab/gbrsR")
+install.packages("RcppCNPy")
+# or
+install.packages("reticulate")
 ```
 
 ### Common Error: "FileNotFoundError" or "No such file or directory"

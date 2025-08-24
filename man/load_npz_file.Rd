@@ -2,9 +2,9 @@
 % Please edit documentation in R/file_io.R
 \name{load_npz_file}
 \alias{load_npz_file}
-\title{Load NPZ genotype probability files}
+\title{Load NPZ genotype probability files (with backend fallback)}
 \usage{
-load_npz_file(npz_file, founders = DEFAULT_FOUNDERS)
+load_npz_file(npz_file, founders = DEFAULT_FOUNDERS, cleanup = TRUE)
 }
 \arguments{
 \item{npz_file}{Path to the NPZ file to load}
@@ -12,35 +12,26 @@ load_npz_file(npz_file, founders = DEFAULT_FOUNDERS)
 \item{founders}{Character vector of founder strain names (default: DEFAULT_FOUNDERS)}
 }
 \value{
-Data frame with columns for each diplotype and metadata columns
+Data frame with diplotype probability columns and metadata columns
+        \code{chromosome} and \code{marker_index}.
 }
 \description{
-Loads NPZ files containing genotypic probability matrices and converts them
-to R data frames. This function handles the critical dependency on Python
-and NumPy through the reticulate package.
+High-level loader for NPZ genotype probability matrices that returns a
+unified R data frame. It prefers the reticulate (Python/NumPy) backend when
+available; if \code{reticulate} is not installed, it falls back to the
+RcppCNPy-based loader. If neither backend is available, it errors.
 }
 \details{
-This function performs several key operations:
-\itemize{
-  \item{Loads NPZ file using Python/NumPy via reticulate}
-  \item{Generates all possible founder strain combinations (diplotypes)}
-  \item{Converts probability matrices to R data frames}
-  \item{Adds chromosome and marker index information}
+Behavior:
+\enumerate{
+  \item If \code{reticulate} is installed, uses the reticulate backend
+  \item Else if \code{RcppCNPy} is installed, uses the RcppCNPy backend
+  \item Else, throws an informative error with install guidance
 }
 }
-\section{CRITICAL DEPENDENCY WARNING}{
-
-This function REQUIRES Python and the reticulate R package to function!
-Without these dependencies, you will get errors like:
-- "Error: Please install reticulate"
-- "FileNotFoundError: No such file or directory"
-
-See the README for complete installation instructions.
-}
-
 \examples{
 \dontrun{
-# Load a standard NPZ file
+# Load a standard NPZ file (uses reticulate if available, else RcppCNPy)
 data <- load_npz_file("example.npz")
 
 # Load with custom founders
