@@ -1,6 +1,6 @@
 # Installing gbrsR
 
-⚠️ **CRITICAL DEPENDENCY WARNING** ⚠️
+!!! **CRITICAL DEPENDENCY WARNING** !!!
 
 **This package REQUIRES Python and the `reticulate` R package to function!**
 
@@ -57,14 +57,14 @@ The package requires these R packages:
 - dplyr  
 - tidyr
 - stringr
-- **reticulate** ⚠️ **CRITICAL**
+- **reticulate** !!! **CRITICAL**
 - readr
 - magrittr
 
 **Note**: These R packages will be installed automatically when you install gbrsR.
 
 ### Python Requirements (MANDATORY)
-🚨 **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
+!!! **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
 
 You **MUST** have:
 - **Python 3.6+** installed and accessible from R

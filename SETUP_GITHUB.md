@@ -54,13 +54,13 @@ diplotypes <- generate_diplotypes()
 ```
 
 ## What Gets Pushed:
-- ✅ Complete R package source code
-- ✅ Professional README with installation instructions
-- ✅ MIT License
-- ✅ GitHub Actions workflow for CI/CD
-- ✅ Comprehensive documentation
-- ✅ Tests and vignettes
-- ✅ Example data file
+- [x] Complete R package source code
+- [x] Professional README with installation instructions
+- [x] MIT License
+- [x] GitHub Actions workflow for CI/CD
+- [x] Comprehensive documentation
+- [x] Tests and vignettes
+- [x] Example data file
 
 ## After Push:
 Your package will be available at: https://github.com/churchill-lab/gbrsR

@@ -8,7 +8,7 @@ A comprehensive R package for visualizing genome reconstructions from GBRS (Geno
 
 ---
 
-🚨 **CRITICAL DEPENDENCY WARNING** 🚨
+!!! **CRITICAL DEPENDENCY WARNING** !!!
 
 **This package REQUIRES Python and the `reticulate` R package to function!**
 
@@ -32,7 +32,7 @@ A comprehensive R package for visualizing genome reconstructions from GBRS (Geno
 
 ## Installation
 
-⚠️ **CRITICAL REQUIREMENT**: This package **REQUIRES** `reticulate` and Python to function!
+!!! **CRITICAL REQUIREMENT**: This package **REQUIRES** `reticulate` and Python to function!
 
 ### Prerequisites (MANDATORY)
 
@@ -66,7 +66,7 @@ remotes::install_github("churchill-lab/gbrsR")
 
 ### Python Requirements (MANDATORY)
 
-🚨 **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
+!!! **THIS PACKAGE WILL NOT WORK WITHOUT PYTHON!**
 
 This package uses `reticulate` to interface with Python. You **MUST** have:
 - **Python 3.6+** installed and accessible from R
