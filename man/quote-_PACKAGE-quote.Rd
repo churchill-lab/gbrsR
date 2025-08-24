@@ -4,9 +4,9 @@
 \alias{"_PACKAGE"}
 \title{gbrsR: Genome Browser for Recombination Studies}
 \description{
-A comprehensive R package for visualizing genome reconstructions from GBRS 
-(Genome-Based Reconstruction of Strains) data. Supports NPZ files containing 
-genotypic probability matrices and generates publication-ready genome plots 
+A comprehensive R package for visualizing genome reconstructions from GBRS
+(Genome-Based Reconstruction of Strains) data. Supports NPZ files containing
+genotypic probability matrices and generates publication-ready genome plots
 with configurable parameters.
 
 A comprehensive R package for analyzing and visualizing genetic recombination
@@ -49,6 +49,6 @@ See the README for complete installation instructions.
 
 \seealso{
 \code{\link{plot_gbrs_genome}} for the main plotting function
-\code{\link{smart_npz_loader}} for loading NPZ files
+\code{\link{load_npz_file}} for loading NPZ files
 \code{\link{configure_plot}} for customizing plot appearance
 }

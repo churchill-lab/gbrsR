@@ -81,7 +81,7 @@ This package uses `reticulate` to interface with Python. You **MUST** have:
 
 If you see this error:
 ```
-Error in smart_npz_loader(npz_file) : Please install reticulate
+Error in load_npz_file(npz_file) : Please install reticulate
 ```
 
 **SOLUTION**: Install the required packages first:
