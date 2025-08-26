@@ -81,7 +81,7 @@ create_genome_plot <- function(df,
             limits = c(0, max(chr_ypos) + config$bar_height + config$founder_gap + config$bar_height + 0.5)
         ) +
         # coordinate system
-        coord_cartesian(ylim = c(0, max(chr_ypos) + config$bar_height + config$founder_gap + config$bar_height + 0.5)) +
+        coord_cartesian(ylim = c(0, max(chr_ypos) + config$bar_height + config$founder_gap + config$bar_height + 0.5), clip = 'off') +
         # labels
         labs(
             title = paste0(
@@ -128,7 +128,7 @@ create_genome_plot <- function(df,
             legend.title = element_text(size = config$font_size_legend, family = config$font_family, face = 'bold'),
 
             # margins and spacing
-            plot.margin = margin(config$plot_margin[1], config$plot_margin[2], config$plot_margin[3], config$plot_margin[4], 'cm'),
+            plot.margin = margin(config$plot_margin[1], max(config$plot_margin[2], 1.5), config$plot_margin[3], config$plot_margin[4], 'cm'),
 
             # remove unnecessary elements for cleaner look
             legend.background = element_blank(),
